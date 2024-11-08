@@ -31,3 +31,16 @@ export const getUser=async(req,res)=>{
         console.log(error) 
     }
 } 
+export const updateUser=async(req,res)=>{
+    try {
+        const id=parseInt(req.params.id);
+        const {name,email,password}=req.body
+        const finduser=await prisma.User.findUnique({where:{id}});
+        if(!finduser) return res.status(400).json({message:`user doesnot exist`});
+        const updateUser=await prisma.User.update({where:{id},data:{name,email,password}})
+        if(!updateUser) return res.status(400).json({message:`user doesnot updated`});
+        res.status(200).json({message:`user fetched successfully`,data:updateUser})
+    } catch (error) {
+        console.log(error) 
+    }
+} 
