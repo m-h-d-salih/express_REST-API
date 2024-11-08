@@ -14,7 +14,7 @@ export const createUser=async(req,res)=>{
 export const getUsers=async(req,res)=>{
     try {
         
-        const finduser=await prisma.User.find();
+        const finduser=await prisma.User.findMany();
         if(!finduser) return res.status(400).json({message:`users doesnot exist`});
         res.status(200).json({message:`user created successfully`,data:finduser})
     } catch (error) {
