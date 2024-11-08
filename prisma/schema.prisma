@@ -17,5 +17,26 @@ model User {
   email   String   @unique
   name    String?
   password String?
+  post Post[]
+  comment Comment[]
   created_at DateTime @default(now())
+}
+model Post{
+  id Int @id @default(autoincrement())
+  user User @relation(fields: [user_id],references: [id])
+  comment Comment[]
+  user_id Int 
+  title   String
+  description String
+  comment_count BigInt @default(0)
+  created_at DateTime @default(now())
+}
+model Comment{
+id String @id @default(uuid())
+post Post @relation(fields: [post_id],references: [id])
+post_id Int
+user User @relation(fields: [user_id],references: [id])
+user_id Int
+comment String
+created_at DateTime @default(now())
 }
