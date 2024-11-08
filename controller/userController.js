@@ -44,3 +44,15 @@ export const updateUser=async(req,res)=>{
         console.log(error) 
     }
 } 
+export const deleteUser=async(req,res)=>{
+    try {
+        const id=parseInt(req.params.id);
+        const finduser=await prisma.User.findUnique({where:{id}});
+        if(!finduser) return res.status(400).json({message:`user doesnot exist`});
+        const deletedUser=await prisma.User.delete({where:{id}})
+        if(!deleteUser) return res.status(400).json({message:`user doesnot deleted`});
+        res.status(200).json({message:`user fetched successfully`,data:deletedUser})
+    } catch (error) {
+        console.log(error) 
+    }
+} 
