@@ -39,7 +39,7 @@ export const updateUser=async(req,res)=>{
         if(!finduser) return res.status(400).json({message:`user doesnot exist`});
         const updateUser=await prisma.User.update({where:{id},data:{name,email,password}})
         if(!updateUser) return res.status(400).json({message:`user doesnot updated`});
-        res.status(200).json({message:`user fetched successfully`,data:updateUser})
+        res.status(200).json({message:`user updated successfully`,data:updateUser})
     } catch (error) {
         console.log(error) 
     }
@@ -51,7 +51,7 @@ export const deleteUser=async(req,res)=>{
         if(!finduser) return res.status(400).json({message:`user doesnot exist`});
         const deletedUser=await prisma.User.delete({where:{id}})
         if(!deleteUser) return res.status(400).json({message:`user doesnot deleted`});
-        res.status(200).json({message:`user fetched successfully`,data:deletedUser})
+        res.status(200).json({message:`user deleted successfully`,data:deletedUser})
     } catch (error) {
         console.log(error) 
     }
