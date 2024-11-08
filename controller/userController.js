@@ -16,15 +16,15 @@ export const getUsers=async(req,res)=>{
         
         const finduser=await prisma.User.findMany();
         if(!finduser) return res.status(400).json({message:`users doesnot exist`});
-        res.status(200).json({message:`user created successfully`,data:finduser})
+        res.status(200).json({message:`users fetched successfully`,data:finduser})
     } catch (error) {
         console.log(error) 
     }
 } 
 export const getUser=async(req,res)=>{
     try {
-        const {email}=req.body;
-        const finduser=await prisma.User.findUnique({where:{email}});
+        const id=parseInt(req.params.id);
+        const finduser=await prisma.User.findUnique({where:{id}});
         if(!finduser) return res.status(400).json({message:`user doesnot exist`});
         res.status(200).json({message:`user fetched successfully`,data:finduser})
     } catch (error) {
