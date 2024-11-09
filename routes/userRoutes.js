@@ -1,6 +1,6 @@
 import express from 'express';
 import { createUser, deleteUser, getUser, getUsers, updateUser } from '../controller/userController.js';
-import { createPost, getPosts, getPostsByUser, updatePost } from '../controller/postController.js';
+import { createPost, deletePost, getPosts, getPostsByUser, updatePost } from '../controller/postController.js';
 
 const router=express.Router();
 
@@ -21,4 +21,5 @@ router.route('/user/post/:id')
 .post(createPost)
 .get(getPostsByUser)
 .put(updatePost)
+.delete(deletePost)
 export {router}

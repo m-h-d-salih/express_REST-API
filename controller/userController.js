@@ -9,7 +9,7 @@ export const createUser=async(req,res)=>{
         res.status(200).json({message:`user created successfully`,data:newuser})
     } catch (error) {
         console.log(error) 
-       return res.status(500).json({message:`intternel server error ${error.message}`})
+       return res.status(500).json({message:`internel server error ${error.message}`})
     }
 } 
 export const getUsers=async(req,res)=>{
@@ -20,7 +20,7 @@ export const getUsers=async(req,res)=>{
         res.status(200).json({message:`users fetched successfully`,data:finduser})
     } catch (error) {
         console.log(error) 
-        return res.status(500).json({message:`intternel server error ${error.message}`})
+        return res.status(500).json({message:`internel server error ${error.message}`})
     }
 } 
 export const getUser=async(req,res)=>{
@@ -31,7 +31,7 @@ export const getUser=async(req,res)=>{
         res.status(200).json({message:`user fetched successfully`,data:finduser})
     } catch (error) {
         console.log(error) 
-       return res.status(500).json({message:`intternel server error ${error.message}`})
+       return res.status(500).json({message:`internel server error ${error.message}`})
     }
 } 
 export const updateUser=async(req,res)=>{
@@ -45,7 +45,7 @@ export const updateUser=async(req,res)=>{
         res.status(200).json({message:`user updated successfully`,data:updateUser})
     } catch (error) {
         console.log(error) 
-        return res.status(500).json({message:`intternel server error ${error.message}`})
+        return res.status(500).json({message:`internel server error ${error.message}`})
     }
 } 
 export const deleteUser=async(req,res)=>{
@@ -58,6 +58,6 @@ export const deleteUser=async(req,res)=>{
         res.status(200).json({message:`user deleted successfully`,data:deletedUser})
     } catch (error) {
         console.log(error) 
-        return res.status(500).json({message:`intternel server error ${error.message}`})
+        return res.status(500).json({message:`internel server error ${error.message}`})
     }
 } 

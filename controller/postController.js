@@ -16,7 +16,7 @@ export const getPosts=async(req,res)=>{
         res.status(200).send({message:`posts fetched successfully`,data})
     } catch (error) {
         console.log(error) 
-       return res.status(500).json({message:`intternel server error ${error.message}`})
+       return res.status(500).json({message:`internel server error ${error.message}`})
     }
 }
 
@@ -35,7 +35,7 @@ export const createPost=async(req,res)=>{
         res.status(200).send({message:`post created successfully`,data})
     } catch (error) {
         console.log(error) 
-        return res.status(500).json({message:`intternel server error ${error.message}`})
+        return res.status(500).json({message:`internel server error ${error.message}`})
     }
 }
 export const getPostsByUser=async(req,res)=>{
@@ -47,7 +47,7 @@ export const getPostsByUser=async(req,res)=>{
         res.status(200).send({message:`post fetched successfully`,data})
     } catch (error) {
        console.log(error) 
-       return res.status(500).json({message:`intternel server error ${error.message}`})
+       return res.status(500).json({message:`internel server error ${error.message}`})
     }
 }
 
@@ -63,6 +63,20 @@ export const updatePost=async(req,res)=>{
         res.status(200).send({message:`post updated successfully`,data})
     } catch (error) {
         console.log(error) 
-       return res.status(500).json({message:`intternel server error ${error.message}`})
+       return res.status(500).json({message:`internel server error ${error.message}`})
+    }
+}
+
+export  const deletePost=async(req,res)=>{
+    const id=parseInt(req.params.id)
+    try {
+        const post=await prisma.post.findUnique({where:{id}})
+        if(!post) return res.status(404).json({message:`no post found`})
+        const deleted=await prisma.post.delete({where:{id}})
+        const data=json(deleted)
+        res.status(200).send({message:`post deleyted successfully`,data})
+    } catch (error) {
+        console.log(error) 
+       return res.status(500).json({message:`internel server error ${error.message}`})
     }
 }
