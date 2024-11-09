@@ -5,10 +5,11 @@ export const createUser=async(req,res)=>{
         const {name,email,password}=req.body;
         const finduser=await prisma.user.findUnique({where:{email}});
         if(finduser) return res.status(400).json({message:`user already exist`});
-        const newuser=await prisma.User.create({data:{name,email,password}})
+        const newuser=await prisma.user.create({data:{name,email,password}})
         res.status(200).json({message:`user created successfully`,data:newuser})
     } catch (error) {
         console.log(error) 
+       return res.status(500).json({message:`intternel server error ${error.message}`})
     }
 } 
 export const getUsers=async(req,res)=>{
@@ -19,6 +20,7 @@ export const getUsers=async(req,res)=>{
         res.status(200).json({message:`users fetched successfully`,data:finduser})
     } catch (error) {
         console.log(error) 
+        return res.status(500).json({message:`intternel server error ${error.message}`})
     }
 } 
 export const getUser=async(req,res)=>{
@@ -29,6 +31,7 @@ export const getUser=async(req,res)=>{
         res.status(200).json({message:`user fetched successfully`,data:finduser})
     } catch (error) {
         console.log(error) 
+       return res.status(500).json({message:`intternel server error ${error.message}`})
     }
 } 
 export const updateUser=async(req,res)=>{
@@ -42,6 +45,7 @@ export const updateUser=async(req,res)=>{
         res.status(200).json({message:`user updated successfully`,data:updateUser})
     } catch (error) {
         console.log(error) 
+        return res.status(500).json({message:`intternel server error ${error.message}`})
     }
 } 
 export const deleteUser=async(req,res)=>{
@@ -54,5 +58,6 @@ export const deleteUser=async(req,res)=>{
         res.status(200).json({message:`user deleted successfully`,data:deletedUser})
     } catch (error) {
         console.log(error) 
+        return res.status(500).json({message:`intternel server error ${error.message}`})
     }
 } 

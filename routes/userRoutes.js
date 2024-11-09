@@ -1,6 +1,6 @@
 import express from 'express';
 import { createUser, deleteUser, getUser, getUsers, updateUser } from '../controller/userController.js';
-import { getPosts } from '../controller/postController.js';
+import { createPost, getPosts } from '../controller/postController.js';
 
 const router=express.Router();
 
@@ -17,4 +17,6 @@ router.route('/user/:id')
 router.route('/posts')
 .get(getPosts)
 
+router.route('/user/post/:id')
+.post(createPost)
 export {router}
