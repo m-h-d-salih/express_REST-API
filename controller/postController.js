@@ -50,3 +50,19 @@ export const getPostsByUser=async(req,res)=>{
        return res.status(500).json({message:`intternel server error ${error.message}`})
     }
 }
+
+export const updatePost=async(req,res)=>{
+    const id=parseInt(req.params.id);
+    const {title,description}=req.body;
+    try {
+        const post=await prisma.post.findUnique({where:{id}})
+        if(!post) return res.status(404).json({message:`no post found`})
+        const updatePost=await prisma.post.update({where:{id},data:{title,description}})
+        if(!updatePost) return res.status(400).json({message:`user doesnot updated`});
+        const data=json(updatePost)
+        res.status(200).send({message:`post updated successfully`,data})
+    } catch (error) {
+        console.log(error) 
+       return res.status(500).json({message:`intternel server error ${error.message}`})
+    }
+}
